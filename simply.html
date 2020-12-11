@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Prime numbers</title>
+    </head>
+    <body>
+        <h1>Find all the prime numbers from 1 to 1000</h1>
+        <p>The result will be shown in developer console and popup window</p>
+        <p>Press FIND to start</p>
+        <button onclick="printPrimes(1000)">FIND</button>
+        <script>
+            function printPrimes(target){
+            const arr = [];
+            const result = [];
+            for (let i = 2; i <= target; i++){
+                if (arr[i] === undefined){
+                console.log(i);
+                result.push(i);
+                for (let j =  i*i; j <= target; j += i){
+                    arr[j] = true;
+                }
+                }
+            }
+            alert(result);
+            }
+
+            
+        </script>
+    </body>
+</html>
