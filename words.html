@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Football - Info</title>
+    </head>
+    <body>
+        <h1>Найти три самых длинных слова в вашей фразе</h1>
+        <button onclick="longestWords()">Найти</button>
+        <script>
+            function longestWords() {
+                const longestWords = [];
+                const str = prompt("Ваша фраза", "Введите, пожалуйста, вашу фразу здесь");
+                const userPhrase = str.split(/[\?\:,\| ]+/);
+                const sortedPhrase = userPhrase.sort(function(a,b) {
+                    return b.length - a.length;
+                });
+                alert("Три самых длинных слова из вашей фразы: " + "\n" + sortedPhrase[0] + ", " + sortedPhrase[1] + ", " +sortedPhrase[2]);                
+            }
+        </script>
+    </body>
+</html>

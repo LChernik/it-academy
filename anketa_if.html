@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Football - Info</title>
+    </head>
+    <body>
+        <h1>Анкета</h1>
+        <p>Нажмите, пожалуйста, на кнопку START, чтобы начать</p>
+        <button onclick="profile()">START</button>
+        <script>
+            function profile() {
+                let user = {
+                    fio: "",
+                    dob: undefined,
+                    sex: "мужской",
+                    retired: ""
+                };
+                let countedWords = 0;
+                do {
+                    user.fio = prompt("Фамилия Имя Отчество", "Петров Петр Петрович");
+                    if (user.fio == null) {
+                        alert("Вы отменили анкету");
+                        return;
+                    }
+                    countedWords = countWords(user.fio);
+                    if (countedWords > 3) {
+                        alert("Ваше ФИО больше трех слов. Пожалуйста, исправьте ошибку.");
+                    } else if (countedWords < 3) {
+                        alert("Ваше ФИО меньше трех слов. Пожалуйста, исправьте ошибку.")
+                    }
+                } while (countedWords > 3 || countedWords < 3)
+                do {
+                    user.dob = prompt("Возраст", "Ваш возраст");
+                    if (user.dob == null) {
+                        alert("Вы отменили анкету");
+                        return;
+                    }
+                    user.dob = parseInt(user.dob, 10);
+                    if (isNaN(user.dob)) {
+                        alert("Введите ваш возраст в числовом формате");
+                    }
+                } while (isNaN(user.dob))
+                if (confirm("Ваш пол? \n Если ваш пол мужской, нажмите OK. \n Если ваш пол женский, нажмите Cancel.")) {
+                    user.sex = "мужской";
+                } else {
+                    user.sex = "женский";
+                }
+                if ((user.sex == "мужской" && user.dob >= 65) || (user.sex == "женский" && user.dob >= 55)) {
+                    user.retired = "да";
+                } else {
+                    user.retired = "нет";
+                }
+                alert("ФИО: " + user.fio + "\n" + "Возраст, лет: " + user.dob + "\n" + "Возраст, дней: " + user.dob * 365 + "\n" + "Пол: " + user.sex + "\n" + "Пенсионный возраст: " + user.retired);
+
+                function countWords(str) {
+                    return str
+                        .replace(/(^\s*)|(\s*$)/gi, "")
+                        .replace(/[ ]{2,}/gi, " ")
+                        .split(' ')
+                        .length;
+                }
+            }
+        </script>
+    </body>
+</html>
