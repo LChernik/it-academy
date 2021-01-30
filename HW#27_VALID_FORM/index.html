@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>VALID_FORM</title>
+    </head>
+    <body>
+      <script src="./form_validator.js"></script>
+        <form onsubmit="return validateForm(event,[
+          f => validateFullName(f, document.form.author, 'authorErr'),
+          f => validateTitle(f, document.form.title, 'titleErr'),
+          f => validateURL(f, document.form.url, 'urlErr'),
+          f => validateDate(f, document.form.startDate, 'startDateErr'),
+          f => validateNumber(f, document.form.persons, 'personsErr', 0),
+          f => validateEmail(f, document.form.email, 'emailErr'),
+          f => validateCatalog(f, document.form.rubric, 'rubricErr'),
+          f => validatePublic(f, document.form.public, 'publicErr'),
+          f => validateComments(f, document.form.comments, 'commentsErr'),
+          f => validateTextArea(f, document.form.article, 'articleErr'),
+        ])"
+          name="form" method="POST" action="https://fe.it-academy.by/TestForm.php" target="_blank">
+          <table class="SNoBorders">
+            <tbody>
+              <tr><td>Разработчики:</td>
+                <td>
+                  <input onblur="validateFullName(false, document.form.author, 'authorErr')"
+                    type="text" 
+                    name="author"
+                    spellcheck="false"
+                    style="width: 453px">
+                  <div class="error" id="authorErr"></div>
+                </td>
+              </tr>
+            <tr><td>Название сайта:</td>
+              <td>
+                <input onblur="validateTitle(false, document.form.title, 'titleErr')"
+                  type="text" 
+                  name="title" 
+                  style="width: 453px">
+                <div class="error" id="titleErr"></div>
+              </td>
+            </tr>
+            <tr><td>URL сайта:</td>
+              <td>
+                <input onblur="validateURL(false, document.form.url, 'urlErr')"
+                  type="text" 
+                  placeholder="https://example.com"
+                  name="url" 
+                  style="width: 300px">
+                <div class="error" id="urlErr"></div>
+              </td>
+            </tr>
+            <tr><td>Дата запуска сайта:</td>
+              <td>
+                <input onblur="validateDate(false, document.form.startDate, 'startDateErr')"
+                  type="text"
+                  placeholder="dd/mm/yyyy"
+                  name="startDate" 
+                  style="width: 80px">
+                <div class="error" id="startDateErr"></div>
+              </td>
+            </tr>
+            <tr><td>Посетителей в сутки:</td>
+              <td>
+                <input onblur="validateNumber(false, document.form.persons, 'personsErr', 0)"
+                  type="text" 
+                  name="persons" 
+                  style="width: 80px">
+                <div class="error" id="personsErr"></div>
+              </td>
+            </tr>
+            <tr><td>E-mail для связи:</td>
+              <td>
+                <input onblur="validateEmail(false, document.form.email, 'emailErr')"
+                  type="email" 
+                  placeholder="example@mail.com"
+                  name="email" 
+                  style="width: 200px">
+                <div class="error" id="emailErr"></div>
+              </td>
+            </tr>
+            <tr><td>Рубрика каталога:</td>
+              <td style="padding-left: 1px">
+                <select onchange="validateCatalog(false, document.form.rubric, 'rubricErr')" 
+                  onfocus="validateCatalog(false, document.form.rubric, 'rubricErr')" 
+                  name="rubric" 
+                  style="width: 204px; margin-left: 2px">
+                <option value="1">здоровье</option>
+                <option value="2">домашний уют</option>
+                <option value="3" selected="">бытовая техника</option>
+                </select>
+              <div class="error" id="rubricErr"></div>
+            </td></tr>
+            <tr><td>Размещение:</td>
+              <td style="padding: 2px 0 2px 0">
+              <input onchange="validatePublic(false, document.form.public, 'publicErr')"
+                type="radio" 
+                name="public" 
+                value="1">
+              <span class="SRadio8a">бесплатное</span>
+              <input onchange="validatePublic(false, document.form.public, 'publicErr')"
+                type="radio" 
+                name="public" 
+                value="2">
+              <span class="SRadio8a">платное</span>
+              <input onchange="validatePublic(false, document.form.public, 'publicErr')"
+                type="radio" 
+                name="public"
+                value="3">
+              <span class="SRadio8a">VIP</span>
+              <div class="error" id="publicErr"></div>
+            </td></tr>
+            <tr><td style="padding: 2px 0 3px 3px">Разрешить&nbsp;отзывы:</td>
+              <td>
+                <input onchange="validateComments(false, document.form.comments, 'commentsErr')"
+                  type="checkbox" 
+                  name="comments">
+                  <div class="error" id="commentsErr"></div>
+              </td>
+            </tr>
+            <tr><td colspan="2">Описание сайта:<br>
+            <textarea onblur="validateTextArea(false, document.form.article, 'articleErr')"
+                name="article" 
+                style="width: 608px; height: 50px"></textarea>
+              <div class="error" id="articleErr"></div>
+            </td>
+          </tr>
+            <tr><td>
+              <input 
+                type="submit" 
+                value="Опубликовать">
+              </td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </form>
+    </body>
+</html>
+
+
