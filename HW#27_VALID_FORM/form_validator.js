@@ -127,11 +127,16 @@ function validateTextArea(setFocusIfInvalid, field, errElId){
 }
 
 function validateForm(event, validators){
-    let isValid = true;
-    for (let validator of validators){
-        isValid &= validator(isValid);
-    }
-    if(!isValid){
+    try {
+        let isValid = true;
+        for (let validator of validators){
+            isValid &= validator(isValid);
+        }
+        if(!isValid){
+            event.preventDefault();
+            return false;
+        }
+    } catch (_err){
         event.preventDefault();
         return false;
     }
