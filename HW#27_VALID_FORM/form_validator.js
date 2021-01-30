@@ -97,13 +97,13 @@ function validateCatalog(setFocusIfInvalid, field, errElId){
 function validatePublic(setFocusIfInvalid, field, errElId){
     if (field.value === ''){
         setError(errElId, 'Выберете, пожалуйста, опцию размещения');
-        return true;
     } else if(field.value === '1'){
         setError(errElId, 'Эта опция недоступна, пожалуйста, выберете другую');
     } else {
         setError(errElId, '');
+        return true;
     }
-    if(setFocusIfInvalid) field.focus();
+    if(setFocusIfInvalid && field.length > 0) field[0].focus();
     return false;
 }
 
