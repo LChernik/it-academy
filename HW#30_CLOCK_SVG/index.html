@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <title>Clock_SVG</title>
+    </head>
+    <body>
+        <svg id="clock" viewBox="0 0 100 100" width="500" height="500">
+            <!-- clock face -->
+            <circle id="face" cx="50" cy="50" r="41"/> 
+   
+            <!-- clock numbers -->
+            <g id="numbers">
+              <!-- <text x="67" y="23">1</text>
+              <text x="80" y="35">2</text>
+              <text x="85" y="53">3</text>
+              <text x="80" y="72">4</text>
+              <text x="67" y="85">5</text>
+              <text x="50" y="50">6</text>
+              <text x="35" y="85">7</text>
+              <text x="20" y="72">8</text>
+              <text x="15" y="53">9</text>
+              <text x="20" y="35">10</text>
+              <text x="32" y="23">11</text>
+              <text x="50" y="18">12</text> -->
+            </g>
+            
+            <!-- clock hands -->
+            <g id="hands"> 
+              <line id="hourHand" x1="50" y1="50" x2="50" y2="24"/>
+              <line id="minuteHand" x1="50" y1="50" x2="50" y2="20"/>
+              <line id="secondHand" x1="50" y1="50" x2="50" y2="16"/>
+            </g>
+
+            <g id="digital">
+              <text id="digitalClock" x="37" y="40"></text>
+            </g>
+          </svg>
+       <script src="./script.js"></script>
+    </body>
+</html>
