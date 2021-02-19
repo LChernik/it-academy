@@ -13,10 +13,9 @@ const TotalDegrees = 360;
     const canvasCenter = canvas.height / 2;
     ctx.translate(canvasCenter, canvasCenter);
     const faceRadius = canvasCenter * 0.65;
-
+    drawClock(ctx, faceRadius);
     setInterval(drawClock, 1000, ctx, faceRadius);
 })()
-
 
 function drawClock(ctx, faceRadius){
     drawFace(ctx, faceRadius);
