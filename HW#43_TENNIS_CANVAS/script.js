@@ -13,11 +13,11 @@ const context = canvas.getContext('2d');
 // Max height a paddle can go up
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
-function Paddle({x, y, width, heigh, dy}) {
+function Paddle({x, y, width, height, dy}) {
   this.x = x;
   this.y = y;
   this.width = width;
-  this.heigh = heigh;
+  this.height = height;
   this.dy = dy;
   this.top = () => this.y;
   this.bottom = () => this.y + this.height;
@@ -25,11 +25,11 @@ function Paddle({x, y, width, heigh, dy}) {
   this.left = () => this.x - this.width / 2;
 }
 
-function Ball({x, y, width, heigh, dx, dy}) {
+function Ball({x, y, width, height, dx, dy}) {
   this.x = x;
   this.y = y;
   this.width = width;
-  this.heigh = heigh;
+  this.height = height;
   this.dx = dx;
   this.dy = dy;
   this.top = () => this.y;
