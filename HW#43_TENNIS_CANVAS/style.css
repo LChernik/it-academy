@@ -1,0 +1,52 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: rgb(76, 177, 202);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#counter {
+  margin-bottom: 10px;
+  color: white;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.start {
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 15%;
+  border: none;
+  border-radius: 5%;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); 
+  cursor: pointer; 
+  outline: none; 
+  transition: 0.2s all;
+}
+
+.start:active { 
+  transform: scale(0.98); 
+  /* Scaling button to 0.98 to its original size */ 
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+  /* Lowering the shadow */ 
+} 
+.start:focus { 
+  outline: none;
+}
