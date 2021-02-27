@@ -5,7 +5,7 @@ const paddleHeight = grid * 5;
 // Paddle speed
 const paddleSpeed = 6;
 // Ball speed
-const ballSpeed = 2;
+const ballSpeed = 5;
 
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
@@ -13,31 +13,58 @@ const context = canvas.getContext('2d');
 // Max height a paddle can go up
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
+function Paddle({x, y, width, heigh, dy}) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.heigh = heigh;
+  this.dy = dy;
+  this.top = () => this.y;
+  this.bottom = () => this.y + this.height;
+  this.right = () => this.x + this.width / 2;
+  this.left = () => this.x - this.width / 2;
+}
+
+function Ball({x, y, width, heigh, dx, dy}) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.heigh = heigh;
+  this.dx = dx;
+  this.dy = dy;
+  this.top = () => this.y;
+  this.bottom = () => this.y + this.height;
+  this.right = () => this.x + this.width / 2;
+  this.left = () => this.x - this.width / 2;
+  this.center = () => ({x: x, y: y});
+}
+
 // Right, left paddles and ball description
-const leftPaddle = {
+const leftPaddle = new Paddle({
   x: grid * 2,
   y: canvas.height / 2 - paddleHeight / 2,
   width: grid,
   height: paddleHeight,
   dy: 0
-};
+});
 
-const rightPaddle = {
+const rightPaddle = new Paddle({
   x: canvas.width - grid * 3,
   y: canvas.height / 2 - paddleHeight / 2,
   width: grid,
   height: paddleHeight,
-  dy: 0
-};
+  dy: 0,
+});
 
-const ball = {
+
+const ball = new Ball({
   x: canvas.width / 2,
   y: canvas.height / 2,
   width: grid,
   height: grid,
   dx: 0,
-  dy: 0
-};
+  dy: 0,
+});
 
 const counter = {
   left: 0,
@@ -45,11 +72,11 @@ const counter = {
 };
 
 // Check whether two objects intersect;  credit to: https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-function collides(obj1, obj2) {
-    return obj1.x - obj1.width / 2 < obj2.x + obj2.width &&
-           obj1.x + obj1.width / 2 > obj2.x &&
-           obj1.y < obj2.y + obj2.height &&
-           obj1.y > obj2.y;
+function collides(ball, paddle) {
+    return ball.left() < paddle.right() &&
+           ball.right() > paddle.left() &&
+           ball.center().y < paddle.bottom() &&
+           ball.center().y > paddle.top();
 };
 
 function loop() {
@@ -109,10 +136,10 @@ function loop() {
 
     if (collides(ball, leftPaddle)) {
       ball.dx *= -1; 
-      ball.x = leftPaddle.x + leftPaddle.width + ball.width / 2;
+      ball.x = leftPaddle.right() + ball.width / 2;
     } else if (collides(ball, rightPaddle)) {
       ball.dx *= -1;
-      ball.x = rightPaddle.x - ball.width;
+      ball.x = rightPaddle.left() - ball.width;
     }
 
     // Draw a net
