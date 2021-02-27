@@ -21,8 +21,8 @@ function Paddle({x, y, width, height, dy}) {
   this.dy = dy;
   this.top = () => this.y;
   this.bottom = () => this.y + this.height;
-  this.right = () => this.x + this.width / 2;
-  this.left = () => this.x - this.width / 2;
+  this.right = () => this.x + this.width;
+  this.left = () => this.x;
 }
 
 function Ball({x, y, width, height, dx, dy}) {
@@ -36,7 +36,7 @@ function Ball({x, y, width, height, dx, dy}) {
   this.bottom = () => this.y + this.height;
   this.right = () => this.x + this.width / 2;
   this.left = () => this.x - this.width / 2;
-  this.center = () => ({x: x, y: y});
+  this.center = () => ({x: this.x, y: this.y});
 }
 
 // Right, left paddles and ball description
