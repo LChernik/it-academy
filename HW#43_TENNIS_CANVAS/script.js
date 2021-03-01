@@ -12,6 +12,8 @@ const context = canvas.getContext('2d');
 
 // Max height a paddle can go up
 const maxPaddleY = canvas.height - grid - paddleHeight;
+//Game state
+let isInGame = false;
 
 function Paddle({x, y, width, height, dy}) {
   this.x = x;
@@ -55,7 +57,6 @@ const rightPaddle = new Paddle({
   height: paddleHeight,
   dy: 0,
 });
-
 
 const ball = new Ball({
   x: canvas.width / 2,
@@ -116,20 +117,19 @@ function loop() {
       ball.dy *= -1; 
     } else if (ball.y > canvas.height - ball.width / 2) { 
       ball.y = canvas.height - ball.width / 2; 
-      ball.dy *= -1; 
+      ball.dy *= -1;
     }
 
-    if (ball.x < 0) {
+    if (ball.left() < ballSpeed && isInGame) {
       counter.right ++;
       document.getElementById('counter').innerHTML = counter.left + ':' + counter.right;
-    } else if (ball.x > canvas.width){
+    } else if (ball.right() > canvas.width - ballSpeed && isInGame){
       counter.left ++;
       document.getElementById('counter').innerHTML = counter.left + ':' + counter.right;
     }
 
-    if ( (ball.x < 0 || ball.x > canvas.width) && !ball.resetting) {
-        ball.x = canvas.width / 2;
-        ball.y = canvas.height / 2;
+    if ( (ball.left() < ballSpeed || ball.right() > canvas.width - ballSpeed)) {
+        isInGame = false;
         ball.dx = 0;
         ball.dy = 0;
     }
@@ -178,6 +178,9 @@ function loop() {
 requestAnimationFrame(loop);
 
 function start() {
+  ball.y = canvas.height / 2;
+  ball.x = canvas.width / 2;
   ball.dx = ballSpeed;
   ball.dy = -ballSpeed;
+  isInGame = true;
 }
