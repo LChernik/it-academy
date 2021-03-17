@@ -4,7 +4,7 @@ function testLoadData() {
     );
 }
 
-let newData = [];
+let buttons = [];
 
 function dataLoaded(data) {
 
@@ -26,13 +26,13 @@ function dataLoaded(data) {
         }
     }
 
-    if(newData.length > 0){
-        newData.forEach(element => {
-            element.buttonRemove();
-        });
-    }
+    
+    buttons.forEach(element => {
+        element.buttonRemove();
+    });
+    
 
-    newData = data.map(element => {
+    buttons = data.map(element => {
         const buttonText = element.buttonCaption;
         const textAlert = element.alertText;
         return new PoemButton(buttonText, textAlert);
@@ -40,6 +40,6 @@ function dataLoaded(data) {
 }
 
 function errorHandler(jqXHR,statusStr,errorStr) {
-    alert(statusStr+' '+errorStr);
+    alert(statusStr + ' ' + errorStr);
 }
 

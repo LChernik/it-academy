@@ -14,5 +14,5 @@ function dataLoaded(data) {
 }
 
 function errorHandler(jqXHR,statusStr,errorStr) {
-    alert(statusStr+' '+errorStr);
+    alert(statusStr + ' ' + errorStr);
 }

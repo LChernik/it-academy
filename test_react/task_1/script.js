@@ -12,5 +12,5 @@ function printAlphabet(array, delegate, delay) {
 }
   
 function print(){
-return printAlphabet(alphabet, function(obj) {console.log(obj)},1000);
+    return printAlphabet(alphabet, function(obj) {console.log(obj)},1000);
 }; 
